@@ -1,0 +1,66 @@
+/* Reset margins and set up the background */
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #ffe6eb; /* Soft romantic pink */
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    overflow: hidden; /* Prevents scrollbars when the No button runs away */
+}
+
+/* The central white card */
+.card {
+    background: white;
+    padding: 40px 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(255, 105, 135, 0.2);
+    width: 85%;
+    max-width: 400px;
+    position: relative;
+}
+
+h1 {
+    color: #ff4d6d;
+    font-size: 1.6em;
+    margin-bottom: 30px;
+    line-height: 1.4;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    position: relative;
+    height: 50px;
+}
+
+button {
+    padding: 12px 30px;
+    font-size: 1.2em;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    color: white;
+    font-weight: bold;
+    transition: transform 0.2s, background-color 0.3s;
+}
+
+/* Styling the buttons */
+#yesBtn {
+    background-color: #ff4d6d;
+    box-shadow: 0 4px 15px rgba(255, 77, 109, 0.4);
+    z-index: 2;
+}
+
+#yesBtn:active {
+    transform: scale(0.95);
+}
+
+#noBtn {
+    background-color: #a3a3a3;
+    z-index: 10;
+}
