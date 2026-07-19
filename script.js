@@ -9,26 +9,24 @@ const questions = [
 // Interactive high-quality Giphy love stickers mapped out for each stage
 const gifs = [
     "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbWoxZXl2YXh5dG90M3Rxbmd5NTh1M3B0ZzJpNTF6cmx1b212ZXdlayZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/cLS1cfxvGOPVpf9g3y/giphy.gif", // Intro: Cute wave
-    "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3NndDR5ZG41MDN5dHBsY21zb2t5ZXlia2t4aXR5Z3pxcDR6amtsdyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/v4a3SbvTAcSp7NTpAL/giphy.gif", // Q1: Shy heart
-    "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHJndW93ZXQ1M3B4ZXA1ODN5Nm1paWZ6dDF5aDJ5Z3RxbzB1cWZ1eCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/3oz8xAFtqoOUUrsh7W/giphy.gif", // Q2: Throwing hearts
-    "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbnd4N2RndG11MnV5amRtNXhyeGhzb3lhbDJ1cjBwOHR4dWQ1OHpxNSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/RGoq6xjGrLjOewtDGb/giphy.gif", // Q3: Pleading eyes
-    "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHlna2N4dnVjN3k5d3RyeG01ZnMxdmR5dXZ5M3pydzBpeWsyYjhpMiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/l4pTdcifPzcibgnHW/giphy.gif"  // Final Proposal Question
+    "https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExdmRyYzMzYmlxbjI5anA5bnBwM3Z5ZWh4MWY2anlseDZianp3ZGZ0aiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/aCSURh6OnUyXdOuYcq/giphy.gif", // Q1: Shy heart
+    "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExODNubjVscHVmdWh0MXF1dWhiNnFzbXVzM3VqcHh0OHZmbDhuNXhlaCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/IcJ6n6VJNjRNS/giphy.gif", // Q2: Throwing hearts
+    "https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExZTE1a3lnd2tjOHVjdThwNHdoYzA0M2NpOWRsb2R4b2p3bm4xd3F4eiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/L3zUGGx1DgLo54951b/giphy.gif", // Q3: Pleading eyes
+    "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExZ2x1cmh4MmRtN2JicGZ2MXVwcDVybmRsZmQ3cmV2bTFwcjVkM21pZCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/abZ5exGrse0W4/giphy.gif"  // Final Proposal Question
 ];
-
-// The grand finale sticker
-const successGif = "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbW14azR4N3I4amtxM3Z4eGt5NXZ4cHpxNjJleG84b3BtMmt5NnV4diZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/KztT2c4u8mYYUiBtOh/giphy.gif"; 
 
 let currentQuestion = 0;
 const questionText = document.getElementById('question');
 const yesBtn = document.getElementById('yesBtn');
 const noBtn = document.getElementById('noBtn');
 const gifSticker = document.getElementById('gif-sticker');
+const gifContainer = document.getElementById('gifContainer');
 const interactionContent = document.getElementById('interaction-content');
 const finalMessage = document.getElementById('final-message');
 
 function nextQuestion() {
     if (currentQuestion < questions.length) {
-        questionText.innerText = Array.isArray(questions) ? questions[currentQuestion] : questions;
+        questionText.innerText = questions[currentQuestion];
         
         // Dynamically shift stickers based on the current step
         gifSticker.src = gifs[currentQuestion + 1];
@@ -41,10 +39,12 @@ function nextQuestion() {
         }
         currentQuestion++;
     } else {
-        // Transition perfectly into Reshmi's letter setup
+        // Hide both the question area AND the GIF container completely
         interactionContent.style.display = "none";
+        gifContainer.style.display = "none";
+        
+        // Show the heartfelt letter
         finalMessage.style.display = "block";
-        gifSticker.src = successGif;
     }
 }
 
