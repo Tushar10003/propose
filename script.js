@@ -28,7 +28,6 @@ function nextQuestion() {
     if (currentQuestion < questions.length) {
         questionText.innerText = questions[currentQuestion];
         
-        // Dynamically shift stickers based on the current step
         gifSticker.src = gifs[currentQuestion + 1];
         
         if (currentQuestion === questions.length - 1) {
@@ -39,12 +38,18 @@ function nextQuestion() {
         }
         currentQuestion++;
     } else {
-        // Hide both the question area AND the GIF container completely
+        // Hide question and GIF container
         interactionContent.style.display = "none";
         gifContainer.style.display = "none";
         
-        // Show the heartfelt letter
+        // Show letter
         finalMessage.style.display = "block";
+
+        // PLAY THE MUSIC HERE ❤️
+        const music = document.getElementById('bgMusic');
+        music.play().catch(error => {
+            console.log("Autoplay prevented by browser: ", error);
+        });
     }
 }
 
