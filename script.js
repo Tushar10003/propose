@@ -16,6 +16,8 @@ const gifs = [
 ];
 
 let currentQuestion = 0;
+let audioUnlocked = false;
+
 const questionText = document.getElementById('question');
 const yesBtn = document.getElementById('yesBtn');
 const noBtn = document.getElementById('noBtn');
@@ -25,9 +27,19 @@ const interactionContent = document.getElementById('interaction-content');
 const finalMessage = document.getElementById('final-message');
 
 function nextQuestion() {
+    const music = document.getElementById('bgMusic');
+
+    // Pre-warm audio on the first tap to satisfy mobile browser policies
+    if (!audioUnlocked && music) {
+        music.play().then(() => {
+            music.pause();
+            music.currentTime = 0;
+            audioUnlocked = true;
+        }).catch(() => {});
+    }
+
     if (currentQuestion < questions.length) {
         questionText.innerText = questions[currentQuestion];
-        
         gifSticker.src = gifs[currentQuestion + 1];
         
         if (currentQuestion === questions.length - 1) {
@@ -38,22 +50,19 @@ function nextQuestion() {
         }
         currentQuestion++;
     } else {
-        // Hide question and GIF container
         interactionContent.style.display = "none";
         gifContainer.style.display = "none";
-        
-        // Show letter
         finalMessage.style.display = "block";
 
-        // PLAY THE MUSIC HERE ❤️
-        const music = document.getElementById('bgMusic');
-        music.play().catch(error => {
-            console.log("Autoplay prevented by browser: ", error);
-        });
+        // Play the music on the final letter screen
+        if (music) {
+            music.play().catch(error => {
+                console.log("Audio playback error: ", error);
+            });
+        }
     }
 }
 
-// Prank logic for the escaping 'No' button
 function moveNoButton() {
     const maxX = window.innerWidth - noBtn.offsetWidth;
     const maxY = window.innerHeight - noBtn.offsetHeight;
