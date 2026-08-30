@@ -3,7 +3,7 @@ const questions = [
     "Do you know you have the absolute best smile?",
     "And that talking to you makes my whole day better?",
     "Are you ready for the most important question?",
-    "Will you be mine? ❤️"
+    "Will you be my partner? ❤️"
 ];
 
 // Interactive high-quality Giphy love stickers mapped out for each stage
